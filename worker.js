@@ -1,9 +1,21 @@
+const CONFIG = {
+  ORIGIN_URL: "http://origin.joybot.web.id:1588", // alamat server Joybot (subdomain origin, bukan IP langsung -> gak perlu diubah walau ganti VPS, cukup update DNS record `origin`)
+  ORIGIN_TIMEOUT_MS: 5000,                          // batas waktu (ms) nunggu jawaban server sebelum dianggap mati
+  SITE_NAME: "Joybot",
+  OWNER_WA_URL: "https://wa.me/6285166615736",
+  OWNER_TG_URL: "https://t.me/mamzishere",
+  CHANNEL_WA_URL: "https://whatsapp.com/channel/0029Vb7wv9bGk1FkazxWBz1M",
+  CHANNEL_TG_URL: "https://t.me/joybot_official",
+  GROUP_WA_URL: "https://chat.whatsapp.com/DiNJATLsvbdL1eQYlUAmo0",
+  GROUP_TG_URL: "https://t.me/joybot_roomchat",
+};
+
 export default {
   async fetch(request, env) {
-    const timeoutMs = Number(env.ORIGIN_TIMEOUT_MS || 5000);
+    const timeoutMs = Number(CONFIG.ORIGIN_TIMEOUT_MS || 5000);
     try {
       const incoming = new URL(request.url);
-      const origin = new URL(env.ORIGIN_URL);
+      const origin = new URL(CONFIG.ORIGIN_URL);
       origin.pathname = incoming.pathname;
       origin.search = incoming.search;
 
@@ -43,14 +55,14 @@ const WA_SVG = '<svg viewBox="0 0 32 32" width="18" height="18" fill="currentCol
 const TG_SVG = '<svg viewBox="0 0 240 240" width="18" height="18" fill="currentColor"><path d="M120 0C53.7 0 0 53.7 0 120s53.7 120 120 120 120-53.7 120-120S186.3 0 120 0zm55.6 82.1-19.6 92.5c-1.5 6.6-5.4 8.2-10.9 5.1l-30.1-22.2-14.5 14c-1.6 1.6-2.9 2.9-6 2.9l2.1-30.4 55.4-50.1c2.4-2.2-.5-3.4-3.7-1.2l-68.5 43.1-29.5-9.2c-6.4-2-6.5-6.4 1.3-9.5l115.2-44.4c5.3-2 9.9 1.3 8.2 9.4z"/></svg>';
 
 function maintenancePage(env) {
-  const siteName = env.SITE_NAME || 'Joybot';
+  const siteName = CONFIG.SITE_NAME || 'Joybot';
 
-  const ownerWa = env.OWNER_WA_URL || '';
-  const ownerTg = env.OWNER_TG_URL || '';
-  const channelWa = env.CHANNEL_WA_URL || '';
-  const channelTg = env.CHANNEL_TG_URL || '';
-  const groupWa = env.GROUP_WA_URL || '';
-  const groupTg = env.GROUP_TG_URL || '';
+  const ownerWa = CONFIG.OWNER_WA_URL || '';
+  const ownerTg = CONFIG.OWNER_TG_URL || '';
+  const channelWa = CONFIG.CHANNEL_WA_URL || '';
+  const channelTg = CONFIG.CHANNEL_TG_URL || '';
+  const groupWa = CONFIG.GROUP_WA_URL || '';
+  const groupTg = CONFIG.GROUP_TG_URL || '';
 
   const icons = { wa: WA_SVG, tg: TG_SVG };
 
