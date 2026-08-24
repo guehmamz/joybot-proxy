@@ -18,6 +18,17 @@ export default {
         signal: controller.signal,
       });
       clearTimeout(timer);
+
+      // FIX: fetch() ke origin bisa "sukses" (gak nge-throw) tapi isinya
+      // halaman error dari Cloudflare sendiri (521/522/523/525/dst) kalau
+      // record `origin` gak sengaja ke-set Proxied lagi, atau origin lagi
+      // beneran down/refuse-connection. Response kayak gini status-nya
+      // >=500 -> anggap sama kayak server mati, tampilin maintenance page
+      // kita sendiri, bukan halaman error mentah Cloudflare yang jelek.
+      if (originResponse.status >= 500) {
+        return maintenancePage(env);
+      }
+
       return originResponse;
     } catch (err) {
       return maintenancePage(env);
