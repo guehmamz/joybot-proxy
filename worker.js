@@ -10,7 +10,7 @@ const CONFIG = {
   // Alamat server Joybot. Sengaja pakai subdomain "origin.joybot.web.id"
   // (bukan IP langsung) -> kalau nanti pindah VPS, CUKUP update 1 DNS
   // record "origin" di Cloudflare, gak perlu sentuh kode ini sama sekali.
-  ORIGIN_URL: "http://origin.joybot.web.id:3000",
+  ORIGIN_URL: "http://origin.joybot.web.id:2108",
 
   // Batas waktu (ms) nunggu jawaban server sebelum dianggap "mati" dan
   // nampilin halaman maintenance. 30 detik -- sengaja gak dibikin pendek,
