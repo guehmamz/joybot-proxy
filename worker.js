@@ -10,7 +10,7 @@ const CONFIG = {
   // langsung) -> kalau nanti pindah VPS, CUKUP update 1 DNS record "origin"
   // (DNS only / awan abu) dan port-nya di bawah ini.
   // Port 2286 = port publik VPS NAT yang diteruskan ke port internal 3000.
-  ORIGIN_URL: "http://origin.joybot.web.id:2286",
+  ORIGIN_URL: "http://origin.joybot.web.id:3000",
 
   // Batas waktu (ms) nunggu jawaban server sebelum dianggap "mati" dan
   // nampilin halaman maintenance. 30 detik -- sengaja gak pendek, karena
